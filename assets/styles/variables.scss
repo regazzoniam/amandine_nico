@@ -12,7 +12,8 @@ $font-h: 'Poppins', sans-serif;
 $font-p: 'Lato', sans-serif;
 
 $theme-colors: (
-    "grey": $grey,
-    "green": $green,
-    "white": $white,
+    "grey":       $grey,
+    "green":      $green,
+    "white":      $white,
+    // rappeler les classes de bootstrap si on souhaite les utiliser ici (theme-colors écrasé)
 )
