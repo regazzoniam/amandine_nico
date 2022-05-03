@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-#[UniqueEntity(fields: 'email'), UniqueEntity(fields: 'id'), UniqueEntity(fields: 'name')]
+#[UniqueEntity(fields: 'email'), UniqueEntity(fields: 'name')]
 #[ORM\Entity(repositoryClass: AccountRepository::class)]
 class Account
 {

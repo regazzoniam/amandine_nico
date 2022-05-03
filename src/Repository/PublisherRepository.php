@@ -32,4 +32,21 @@ class PublisherRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+
+    /**
+     * @return Publisher[]
+     */
+    public function getPublishersAll(): array {
+        return $this->createQueryBuilder('p')
+            ->select('p', 'country', 'games')
+            ->join('p.country', 'country')
+            ->join('p.games', 'games')
+            ->orderBy('p.name')
+//            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
 }
