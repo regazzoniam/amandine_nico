@@ -9,9 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class GameController extends AbstractController
 {
-    public function __construct(private GameRepository $gameRepository) {
-        $this->gameRepository = $gameRepository;
-    }
+    public function __construct(private GameRepository $gameRepository) { }
 
     #[Route('/jeux', name: 'app_game')]
     public function allGames(): Response
