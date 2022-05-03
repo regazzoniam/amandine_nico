@@ -32,4 +32,15 @@ class GameRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+
+    public function latestGames(){
+        return $this->createQueryBuilder('lg')
+            ->select('lg')
+            ->orderBy('lg.publishedAt', 'DESC')
+            ->setMaxResults(9)
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
 }

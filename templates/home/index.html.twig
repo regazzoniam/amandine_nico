@@ -13,11 +13,19 @@
     </style>
 
     <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
 
-        <a href="{{ path('app_publisher') }}">
-            Editeurs
-        </a>
+        <h1>Dernière sortie</h1>
+        {% for latestGames in latestGamesArray  %}
+            <div class="col-4 card" style="width: 18rem;">
+                {% if latestGames.thumbnailCover is defined %}
+                    <img src="{{latestGames.thumbnailCover}}" class="card-img-top" alt="{{latestGames.name}}">
+                {% endif %}
+                <div class="card-body">
+                    <p class="card-text">{{latestGames.name}}</p>
+                    <p class="card-text">{{latestGames.price}}€</p>
+                </div>
+            </div>
+        {% endfor %}
 
         {% if message is defined %}
             {{ message }}
