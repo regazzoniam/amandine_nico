@@ -1,9 +1,16 @@
 .image-container{
     height: 36rem;
+    cursor: pointer;
 
     > img {
         width: 100%;
         height: 100%;
         border-radius: 2rem;
+        
     }
+}
+
+.card-img-top:hover {
+	box-shadow: 0 14px 28px rgba(99, 230, 190, 0.25), 0 10px 10px rgba(99, 230, 190, 0.25);
+	transition: 0.4s;
 }

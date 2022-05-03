@@ -36,6 +36,7 @@ class CommentRepository extends ServiceEntityRepository
     //pour avoir les derniers commentaires
     public function latestComments(int $limit = 4){
         return $this->createQueryBuilder('lc')
+            ->join('lc.account','a')
             ->orderBy('lc.createdAt', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()

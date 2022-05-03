@@ -51,13 +51,12 @@
         </div>
         
         <h2 class="text-center text-green">Les derniers commentaires</h2>
-        {{date}}
         {# Le 21 janvier 2022, par pseudoJoueur #}
         <div class="container my-5">
                 {% for comment in latestCommentsArray %}
                     <div class="card-body">
                         <h5 class="card-title">Le {{date}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Par {{pseudo}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Par {{comment.account.nickname}}</h6>
                         <p class="card-text text-white">{{comment.content}}</p>
                         <div class="text-green"><i class="fa-solid fa-thumbs-up"></i>{{comment.upVotes}}</div>
                         <div class="text-grey"><i class="fa-solid fa-thumbs-down"></i>{{comment.downVotes}}</div>

@@ -24,8 +24,9 @@ class HomeController extends AbstractController
 
         // jeux - les plus joués
         $mostPlayedGames = $this->gameRepository->getMostGamesPlayed();
-        
+
         //date en lettres
+        // à finaliser
         $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
         $date = $formatter->format(strtotime("12/31/2021"));
 
