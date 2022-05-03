@@ -6,6 +6,7 @@
 $grey: rgb(39, 39, 39);
 $green: rgb(99, 230, 190);
 $white: rgb(252, 252, 252);
+$lightgrey: rgb(77, 77, 77);
 
 // police
 $font-h: 'Poppins', sans-serif;
@@ -15,5 +16,6 @@ $theme-colors: (
     "grey":       $grey,
     "green":      $green,
     "white":      $white,
+    "lightgrey":  $lightgrey,
     // rappeler les classes de bootstrap si on souhaite les utiliser ici (theme-colors écrasé)
 )
