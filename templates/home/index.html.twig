@@ -7,7 +7,7 @@
 {% block body %}
 
     <div class="global-container my-5">
-        <h2 class="text-center">Dernière sortie</h2>
+        <h2 class="text-center text-green">Les dernières sorties</h2>
         <div class="container my-5">
             <div class="row align-items-center justify-content-between text-center">
                 {% for latestGames in latestGamesArray  %}
@@ -29,21 +29,40 @@
                 {% endif %} #}
             </div>
         </div>
-        
-        <h2 class="text-center">Derniers commentaires</h2>
 
+
+        <h2 class="text-center text-green">Les plus joués</h2>
         <div class="container my-5">
-            {# <div class="row align-items-center justify-content-between text-center"> #}
+            <div class="row align-items-center justify-content-between text-center">
+                {% for game in mostPlayedGamesArray  %}
+                    <div class="col-4 card border-lightgrey bg-lightgrey image-container">
+                        {% if game.thumbnailCover is defined %}
+                            <img src="{{game.thumbnailCover}}" class="card-img-top mx-auto text-white" alt="{{game.name}}">
+                        {% endif %}
+                        <div class="card-body">
+                        <div class="card-text row">
+                            <p class="text-white col-8">{{game.name}}</p>
+                            <p class="text-green col-4">{{game.price}}€</p>
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <h2 class="text-center text-green">Les derniers commentaires</h2>
+        {{date}}
+        {# Le 21 janvier 2022, par pseudoJoueur #}
+        <div class="container my-5">
                 {% for comment in latestCommentsArray %}
-                {# <div class="col-3 card border-lightgrey bg-lightgrey image-container"> #}
                     <div class="card-body">
+                        <h5 class="card-title">Le {{date}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Par {{pseudo}}</h6>
                         <p class="card-text text-white">{{comment.content}}</p>
                         <div class="text-green"><i class="fa-solid fa-thumbs-up"></i>{{comment.upVotes}}</div>
                         <div class="text-grey"><i class="fa-solid fa-thumbs-down"></i>{{comment.downVotes}}</div>
                     </div>
-                {# </div> #}
                 {% endfor %}
-            {# </div> #}
         </div>
     </div>
 {% endblock %}
