@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les jeux{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+                {% for game in tabGames %}
+                <div class="col-3 card" style="width: 18rem;">
+                    {% if game.thumbnailCover is defined %}
+                    <img src="{{game.thumbnailCover}}" class="card-img-top" alt="{{game.name}}">
+                    {% endif %}
+                <div class="card-body">
+                    <p class="card-text">{{game.name}}</p>
+                    <p class="card-text">{{game.price}}€</p>
+                </div>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+{% endblock %}
