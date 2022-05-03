@@ -6,9 +6,9 @@
     <div class="container my-5">
         <div class="row align-items-center justify-content-between text-center">
                 {% for game in tabGames %}
-                <div class="col-4 card border-lightgrey bg-lightgrey" style="width: 25rem;">
+                <div class="col-4 card border-lightgrey bg-lightgrey image-container">
                     {% if game.thumbnailCover is defined %}
-                    <img src="{{game.thumbnailCover}}" class="card-img-top rounded mx-auto text_white" alt="{{game.name}}" style="width: 20rem; height: 15rem">
+                    <img src="{{game.thumbnailCover}}" class="card-img-top mx-auto text_white" alt="{{game.name}}">
                     {% endif %}
                 <div class="card-body">
                     <div class ="card-text row">
