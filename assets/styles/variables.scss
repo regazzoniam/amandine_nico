@@ -10,3 +10,9 @@ $white: rgb(252, 252, 252);
 // police
 $font-h: 'Poppins', sans-serif;
 $font-p: 'Lato', sans-serif;
+
+$theme-colors: (
+    "grey": $grey,
+    "green": $green,
+    "white": $white,
+)
