@@ -7,10 +7,13 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('styles') }}
         {% endblock %}
+
     </head>
     <body>
         <header>
-            {% block header %}
+            {% block navBar %}
+                {% include 'common/navBar.html.twig' %}
+
             {% endblock %}
         </header>
         {% block body %}
