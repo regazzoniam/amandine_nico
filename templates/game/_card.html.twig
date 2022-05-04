@@ -2,11 +2,11 @@
 
 <div class="col-lg-4 col-md-6 card border-lightgrey bg-lightgrey">
     {% if game.thumbnailCover is defined %}
-        <div class="image-container">
-            <a class="text-decoration-none" href="{{ path('app_game_show', {'slug': game.slug}) }}">
+        <a class="text-decoration-none" href="{{ path('app_game_show', {'slug': game.slug}) }}">
+            <div class="image-container">
                 <img src="{{game.thumbnailCover}}" class="card-img-top mx-auto text-white" alt="{{game.name}}">
-            </a>
-        </div>
+            </div>
+        </a>
     {% endif %}
     <div class="card-body">
     <div class="card-text row">
