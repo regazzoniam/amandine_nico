@@ -1,0 +1,13 @@
+
+
+<div class="col-lg-4 col-md-6 card border-lightgrey bg-lightgrey image-container">
+    {% if game.thumbnailCover is defined %}
+        <img src="{{game.thumbnailCover}}" class="card-img-top mx-auto text-white" alt="{{game.name}}">
+    {% endif %}
+    <div class="card-body">
+    <div class="card-text row">
+        <p class="text-white col-8">{{game.name}}</p>
+        <p class="text-green col-4">{{game.price}}€</p>
+    </div>
+    </div>
+</div>

@@ -10,18 +10,8 @@
         <h2 class="text-center text-green">Les dernières sorties</h2>
         <div class="container my-5">
             <div class="row align-items-center justify-content-between text-center">
-                {% for latestGames in latestGamesArray  %}
-                    <div class="col-4 card border-lightgrey bg-lightgrey image-container">
-                        {% if latestGames.thumbnailCover is defined %}
-                            <img src="{{latestGames.thumbnailCover}}" class="card-img-top mx-auto text-white" alt="{{latestGames.name}}">
-                        {% endif %}
-                        <div class="card-body">
-                        <div class="card-text row">
-                            <p class="text-white col-8">{{latestGames.name}}</p>
-                            <p class="text-green col-4">{{latestGames.price}}€</p>
-                        </div>
-                        </div>
-                    </div>
+                {% for game in latestGamesArray  %}
+                    {% include "game/_card.html.twig" %}
                 {% endfor %}
 
                 {# {% if message is defined %}
@@ -35,23 +25,13 @@
         <div class="container my-5">
             <div class="row align-items-center justify-content-between text-center">
                 {% for game in mostPlayedGamesArray  %}
-                    <div class="col-4 card border-lightgrey bg-lightgrey image-container">
-                        {% if game.thumbnailCover is defined %}
-                            <img src="{{game.thumbnailCover}}" class="card-img-top mx-auto text-white" alt="{{game.name}}">
-                        {% endif %}
-                        <div class="card-body">
-                        <div class="card-text row">
-                            <p class="text-white col-8">{{game.name}}</p>
-                            <p class="text-green col-4">{{game.price}}€</p>
-                        </div>
-                        </div>
-                    </div>
+                    {% include "game/_card.html.twig" %}
                 {% endfor %}
             </div>
         </div>
         
         <h2 class="text-center text-green">Les derniers commentaires</h2>
-        {# Le 21 janvier 2022, par pseudoJoueur #}
+        {#Format demandé : Le 21 janvier 2022, par pseudoJoueur #}
         <div class="container my-5">
                 {% for comment in latestCommentsArray %}
                     <div class="card-body">
@@ -68,17 +48,7 @@
         <div class="container my-5">
             <div class="row align-items-center justify-content-between text-center">
                 {% for game in mostBoughtGamesArray  %}
-                    <div class="col-4 card border-lightgrey bg-lightgrey image-container">
-                        {% if game.thumbnailCover is defined %}
-                            <img src="{{game.thumbnailCover}}" class="card-img-top mx-auto text-white" alt="{{game.name}}">
-                        {% endif %}
-                        <div class="card-body">
-                        <div class="card-text row">
-                            <p class="text-white col-8">{{game.name}}</p>
-                            <p class="text-green col-4">{{game.price}}€</p>
-                        </div>
-                        </div>
-                    </div>
+                    {% include "game/_card.html.twig" %}
                 {% endfor %}
             </div>
         </div>
