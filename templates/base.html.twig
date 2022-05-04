@@ -7,6 +7,9 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('styles') }}
         {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('scripts') }}
+        {% endblock %}
 
     </head>
     <body>
@@ -23,9 +26,4 @@
             {% endblock %}
         </footer>
     </body>
-    <script>
-        {% block javascripts %}
-            {{ encore_entry_script_tags('scripts') }}
-        {% endblock %}
-    </script>
 </html>
