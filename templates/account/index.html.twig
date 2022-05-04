@@ -6,9 +6,33 @@
     <div class="container">
         <div class="row">
             <h2>Compte de <span class="text-green">{{userEntity.name}}</span></h2>
-            <h2>Pseudo{{userEntity.nickname}}</h2>
-            <h2>Name:{{userEntity.name}}</h2>
             <h2>Pseudo:{{userEntity.nickname}}</h2>
+            <h2>Wallet:{{userEntity.wallet}}€</h2>
+        
+
+                {% for library in userEntity.libraries %}
+                <div class="col-lg-4 col-md-6 card border-lightgrey bg-lightgrey">
+                    {% if library.game.thumbnailCover is defined %}
+                        <a class="text-decoration-none" href="{{ path('app_game_show', {'slug': library.game.slug}) }}">
+                            <div class="image-container">
+                                <img src="{{library.game.thumbnailCover}}" class="card-img-top mx-auto text-white" alt="{{library.game.name}}">
+                            </div>
+                        </a>
+                    {% endif %}
+                    <div class="card-body">
+                    <div class="card-text row">
+                        <p>
+                            <i class="fa-solid fa-circle {% if library.installed == true %}text-green{% else %}text-red{% endif %}">
+                            </i>
+                            {{ library.game.name }}
+                        </p>
+                        <p>
+                            Temps de jeu: {{library.timeConverter}}
+                        </p>
+                    </div>
+                    </div>
+                </div>
+                {% endfor %}
         </div>
     </div>
 {% endblock %}
