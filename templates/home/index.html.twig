@@ -35,11 +35,13 @@
         <div class="container my-5">
                 {% for comment in latestCommentsArray %}
                     <div class="card-body">
-                        <h5 class="card-title">Le {{comment.createdAt | date('d-m-Y')}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Par {{comment.account.nickname}}</h6>
+                        <h5 class="card-title">{{comment.game.name}}</h5>
+                        <h6 class="card-subtitle mb-2 text-white">Le {{comment.createdAt | date('d-m-Y')}} par <span class="text-green">{{comment.account.nickname}}<span></h6>
                         <p class="card-text text-white">{{comment.content}}</p>
-                        <div class="text-green"><i class="fa-solid fa-thumbs-up"></i>{{comment.upVotes}}</div>
-                        <div class="text-grey"><i class="fa-solid fa-thumbs-down"></i>{{comment.downVotes}}</div>
+                        <div class="row">
+                            <div class="text-green col-1"><i class="fa-solid fa-thumbs-up"></i>{{comment.upVotes}}</div>
+                            <div class="text-rouge col-1"><i class="fa-solid fa-thumbs-down"></i>{{comment.downVotes}}</div>
+                        </div>
                     </div>
                 {% endfor %}
         </div>
