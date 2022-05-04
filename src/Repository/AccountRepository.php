@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Account;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @method Account|null find($id, $lockMode = null, $lockVersion = null)
@@ -33,4 +34,13 @@ class AccountRepository extends ServiceEntityRepository
         }
     }
 
+    public function getOneAccountBySlug($slug){
+        return $this->createQueryBuilder('a')
+        ->select('a')
+        ->where('a.slug = :slug')
+        ->setParameter('slug', $slug)
+        ->getQuery()
+        ->getSingleResult()
+        ;
+    }
 }
