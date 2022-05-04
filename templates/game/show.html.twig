@@ -3,9 +3,13 @@
 {% block body %}
 <div class="container">
 
-    <h1>{{ gameDetailsArray.name}}</h1>
-    <img src="{{ gameDetailsArray.thumbnailCover }}">
-    <p> {{ gameDetailsArray.description }} </p>
+
+    <h1>{{ game.name}}</h1>
+    <img src="{{ game.thumbnailCover }}">
+
+    <h2>Description</h2>
+    <p> {{ game.description }} </p>
+
 
 
 </div>

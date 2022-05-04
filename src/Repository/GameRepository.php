@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Game;
 use App\Entity\Library;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -72,12 +73,19 @@ class GameRepository extends ServiceEntityRepository
             ;
     }
 
-    public function getOneGame($slug){
+    /**
+     * @throws NonUniqueResultException
+     */
+    public function getOneGame($slug): ?Game {
         return $this->createQueryBuilder('g')
+            ->select('g','c','gr', 'p')
+            ->join('g.countries', 'c')
+            ->join('g.genres','gr')
+            ->leftJoin('g.publisher', 'p')
             ->where('g.slug = :slug')
             ->setParameter('slug', $slug)
             ->getQuery()
-            ->getSingleResult()
+            ->getOneOrNullResult()
             ;
     }
 

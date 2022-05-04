@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\GameRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,17 +22,18 @@ class GameController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws NonUniqueResultException
+     */
     #[Route('/jeux/{slug}', name: 'app_game_show')]
-    public function OneGame($slug): Response
+    public function oneGame($slug): Response
     {
-        $gameEntity = $this->gameRepository->find($slug);
-        dump($gameEntity);
+        dump($slug);
         $getGameDetails = $this->gameRepository->getOneGame($slug);
         dump($getGameDetails);
 
         return $this->render('game/show.html.twig', [
-            'gameEntity' => $gameEntity,
-            'gameDetailsArray' => $getGameDetails,
+            'game' => $getGameDetails,
         ]);
     }
 }
