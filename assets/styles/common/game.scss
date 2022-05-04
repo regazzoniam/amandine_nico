@@ -14,3 +14,13 @@
 	box-shadow: 0 14px 28px rgba(99, 230, 190, 0.25), 0 10px 10px rgba(99, 230, 190, 0.25);
 	transition: 0.4s;
 }
+
+//Style de la page gameDetails
+.containerDetailsimg {
+  height: 500px;
+
+  >img{
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -3,17 +3,23 @@
 {% block body %}
 <div class="container">
 
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="containerDetailsimg px-5">
+                <img src="{{ game.thumbnailCover }}">
+            </div>
+        </div>
+        <div class="col-lg-7 ">
+            <h1 class="mb-4 text-green text-title">{{ game.name}}</h1>
+            <h2>Description</h2>
+            <p class="text-white"> {{ game.description }} </p>
 
-    <h1>{{ game.name}}</h1>
-    <img src="{{ game.thumbnailCover }}">
-
-    <h2>Description</h2>
-    <p> {{ game.description }} </p>
-    <h2>Langue Disponible</h2>
-{% for countriesValues in game.countries  %}
-    <img src="{{ countriesValues.urlFlag }}">
-    <p>{{ countriesValues.name }}</p>
-    {% endfor %}
+            <h2>Langues disponibles</h2>
+            {% for countriesValues in game.countries  %}
+                <img src="{{ countriesValues.urlFlag }}" title="{{ countriesValues.name }}">
+            {% endfor %}
+        </div>
+    </div>
 
 
 
