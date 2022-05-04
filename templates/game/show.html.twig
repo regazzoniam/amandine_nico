@@ -9,6 +9,11 @@
 
     <h2>Description</h2>
     <p> {{ game.description }} </p>
+    <h2>Langue Disponible</h2>
+{% for countriesValues in game.countries  %}
+    <img src="{{ countriesValues.urlFlag }}">
+    <p>{{ countriesValues.name }}</p>
+    {% endfor %}
 
 
 
