@@ -49,7 +49,7 @@ class GameRepository extends ServiceEntityRepository
     
     //pour avoir les jeux les plus joués
     //Join à vérifier (cf use)
-    public function getMostGamesPlayed(int $limit = 9){
+    public function getMostPlayedGames(int $limit = 9){
         return $this->createQueryBuilder('g')
             ->join(Library::class,'lib', Join::WITH,'lib.game = g')
             ->groupBy('g.name')
@@ -59,4 +59,17 @@ class GameRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    //pour avoir les jeux les plus achetés
+    public function getMostBoughtGames(int $limit = 9){
+        return $this->createQueryBuilder('g')
+            ->join(Library::class,'lib', Join::WITH,'lib.game = g')
+            ->groupBy('g.name')
+            ->orderBy('COUNT(lib.gameTime)','DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }

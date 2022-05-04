@@ -23,12 +23,16 @@ class HomeController extends AbstractController
         $latestComments = $this->commentRepository->latestComments();
 
         // jeux - les plus joués
-        $mostPlayedGames = $this->gameRepository->getMostGamesPlayed();
+        $mostPlayedGames = $this->gameRepository->getMostPlayedGames();
+
+        //jeux - les plus achetés
+        $mostBoughtGames = $this->gameRepository->getMostBoughtGames();
 
         return $this->render('home/index.html.twig', [
             'latestGamesArray' => $latestGames,
             'latestCommentsArray' => $latestComments,
             'mostPlayedGamesArray' => $mostPlayedGames,
+            'mostBoughtGamesArray' => $mostBoughtGames,
         ]);
     }
 
