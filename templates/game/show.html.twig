@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+
+    <h1>{{ gameDetailsArray.name}}</h1>
+    <img src="{{ gameDetailsArray.thumbnailCover }}">
+    <p> {{ gameDetailsArray.description }} </p>
+
+
+</div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
