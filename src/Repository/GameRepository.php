@@ -72,4 +72,13 @@ class GameRepository extends ServiceEntityRepository
             ;
     }
 
+    public function getOneGame($slug){
+        return $this->createQueryBuilder('g')
+            ->where('g.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->getQuery()
+            ->getSingleResult()
+            ;
+    }
+
 }

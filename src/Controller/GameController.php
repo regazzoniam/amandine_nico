@@ -21,14 +21,17 @@ class GameController extends AbstractController
         ]);
     }
 
-    #[Route('/jeux/{slug}', name: 'slug_app_game')]
+    #[Route('/jeux/{slug}', name: 'app_game_show')]
     public function OneGame($slug): Response
     {
         $gameEntity = $this->gameRepository->find($slug);
         dump($gameEntity);
+        $getGameDetails = $this->gameRepository->getOneGame($slug);
+        dump($getGameDetails);
 
-        return $this->render('game/index.html.twig', [
+        return $this->render('game/show.html.twig', [
             'gameEntity' => $gameEntity,
+            'gameDetailsArray' => $getGameDetails,
         ]);
     }
 }
