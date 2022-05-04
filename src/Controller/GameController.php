@@ -20,4 +20,15 @@ class GameController extends AbstractController
             'tabGames' => $games,
         ]);
     }
+
+    #[Route('/jeux/{slug}', name: 'slug_app_game')]
+    public function OneGame($slug): Response
+    {
+        $gameEntity = $this->gameRepository->find($slug);
+        dump($gameEntity);
+
+        return $this->render('game/index.html.twig', [
+            'gameEntity' => $gameEntity,
+        ]);
+    }
 }
