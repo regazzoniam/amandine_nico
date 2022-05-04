@@ -36,7 +36,8 @@ class AccountRepository extends ServiceEntityRepository
 
     public function getOneAccountBySlug($slug){
         return $this->createQueryBuilder('a')
-        ->select('a')
+        ->select('a','lib')
+        ->join('a.libraries', 'lib')
         ->where('a.slug = :slug')
         ->setParameter('slug', $slug)
         ->getQuery()
