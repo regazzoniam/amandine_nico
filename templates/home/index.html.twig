@@ -55,7 +55,7 @@
         <div class="container my-5">
                 {% for comment in latestCommentsArray %}
                     <div class="card-body">
-                        <h5 class="card-title">Le {{date}}</h5>
+                        <h5 class="card-title">Le {{comment.createdAt | date('d-m-Y')}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Par {{comment.account.nickname}}</h6>
                         <p class="card-text text-white">{{comment.content}}</p>
                         <div class="text-green"><i class="fa-solid fa-thumbs-up"></i>{{comment.upVotes}}</div>
