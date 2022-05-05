@@ -43,15 +43,7 @@
         <h2 class="text-center text-green text-title mt-5">Commentaires</h2>
         <div class="container">
             {% for comment in userEntity.comments | slice(0,3)%}
-                <div class="card-body">
-                    <h5 class="card-title font-weight-bold text-green">{{comment.game.name}}</h5>
-                    <h6 class="card-subtitle mb-2 text-white">Le {{comment.createdAt | format_datetime('full', 'none', locale='fr')}}</h6>
-                    <p class="card-text text-white">{{comment.content}}</p>
-                    <div class="row">
-                        <div class="text-green col-1"><i class="fa-solid fa-thumbs-up"></i> {{comment.upVotes}}</div>
-                        <div class="text-red col-1"><i class="fa-solid fa-thumbs-down"></i> {{comment.downVotes}}</div>
-                    </div>
-                </div>
+                {% include "comment/_card.html.twig" %}
             {% endfor %}
         </div>
         {% if userEntity.comments | length > 3 %}
