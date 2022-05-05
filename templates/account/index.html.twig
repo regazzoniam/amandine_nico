@@ -4,10 +4,15 @@
 
 {% block body %}
     <div class="container">
-        <div class="row">
-            <h2>Compte de <span class="text-green">{{userEntity.name}}</span></h2>
-            <h2>Pseudo:{{userEntity.nickname}}</h2>
-            <h2>Wallet:{{userEntity.wallet}}€</h2>
+        <div class="row text-center">
+            <div class="container-user mb-5">
+                <p class="icon-account"><i class="fa-solid fa-circle-user fa-6x"></i></p>
+                <h2 class="text-green text-title mb-3">{{userEntity.nickname | capitalize }}</h2>
+                    <h4 class="text-white"><i class="fa-solid fa-user"></i> {{userEntity.name}}</h4>
+                    <h4 class="text-white"><i class="text-green fa-solid fa-sack-dollar"></i> {{userEntity.wallet}}€</h4>
+                    {# totalGameTime issu de account et time_to_string : filtre twig à partir d'un service TimeConverterService #}
+                    <h4 class="text-white"><i class="text-red fa-solid fa-trophy"></i> {{userEntity.totalGameTime | time_to_string}}</h4>
+            </div>
         
 
                 {% for library in userEntity.libraries %}
@@ -21,13 +26,13 @@
                     {% endif %}
                     <div class="card-body">
                     <div class="card-text row">
-                        <p>
+                        <p class="text-white">
                             <i class="fa-solid fa-circle {% if library.installed == true %}text-green{% else %}text-red{% endif %}">
                             </i>
-                            {{ library.game.name }}
+                            <span class="text-title">{{ library.game.name }}</span>
                         </p>
-                        <p>
-                            Temps de jeu: {{library.timeConverter}}
+                        <p class="text-white">
+                            Temps de jeu: {{library.gameTime | time_to_string}}
                         </p>
                     </div>
                     </div>
