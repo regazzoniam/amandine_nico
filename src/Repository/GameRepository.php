@@ -76,19 +76,27 @@ class GameRepository extends ServiceEntityRepository
     /**
      * @throws NonUniqueResultException
      */
-    public function getOneGame($slug, int $limit = 6): ?Game {
-        return $this->createQueryBuilder('g')
-            ->select('g','c','gr', 'p','cmts','a')
-            ->join ('g.comments', 'cmts')
-            ->join('cmts.account', 'a')
-            ->join('g.countries', 'c')
-            ->join('g.genres','gr')
-            ->leftJoin('g.publisher', 'p')
-            ->where('g.slug = :slug')
+    public function getGameWithRelations(string $slug, bool $fully = true): ?Game {
+        $qb = $this->createQueryBuilder('g')
+            ->leftJoin('g.comments', 'cmts')
+            ->leftJoin('cmts.account', 'a')
+        ;
+
+        if ($fully) {
+            $qb->select('g','c','gr', 'p','cmts','a')
+                ->join('g.countries', 'c')
+                ->join('g.genres','gr')
+                ->leftJoin('g.publisher', 'p')
+            ;
+        } else {
+            $qb->select ('g','cmts', 'a');
+        }
+
+        return $qb->where('g.slug = :slug')
             ->setParameter('slug', $slug)
             ->getQuery()
             ->getOneOrNullResult()
-            ;
+        ;
     }
 
 }

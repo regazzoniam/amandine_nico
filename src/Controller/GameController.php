@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CommentRepository;
 use App\Repository\GameRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,11 +30,28 @@ class GameController extends AbstractController
     public function oneGame($slug): Response
     {
         dump($slug);
-        $getGameDetails = $this->gameRepository->getOneGame($slug);
+        $getGameDetails = $this->gameRepository->getGameWithRelations($slug);
         dump($getGameDetails);
 
         return $this->render('game/show.html.twig', [
             'game' => $getGameDetails,
         ]);
     }
+
+    /**
+     * @throws NonUniqueResultException
+     */
+    #[Route('/jeux/{slug}/commentaires', name: 'app_game_comments')]
+    public function allGameComments($slug): Response
+    {
+        $gameWithAllComments = $this->gameRepository->getGameWithRelations($slug, false);
+        dump($gameWithAllComments);
+
+        return $this->render('comment/comments.html.twig', [
+            'game' => $gameWithAllComments,
+        ]);
+    }
+
+
+
 }

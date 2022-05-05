@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2 class="text-center text-green text-title">Tous les commentaires de {{game.name}}</h2>
+<div class="container my-5">
+    {% for comment in game.comments%}
+    <div class="card-body">
+    <h6 class="card-subtitle mb-2 text-white">Le {{comment.createdAt | format_datetime('full', 'none', locale='fr')}} par <a class="text-green text-decoration-none" href="{{ path('app_account_show', {'slug' : comment.account.slug})}}">{{comment.account.nickname}}</a></h6>
+    <p class="card-text text-white">{{comment.content}}</p>
+    <div class="row">
+    <div class="text-green col-1"><i class="fa-solid fa-thumbs-up"></i> {{comment.upVotes}}</div>
+    <div class="text-red col-1"><i class="fa-solid fa-thumbs-down"></i> {{comment.downVotes}}</div>
+    </div>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
