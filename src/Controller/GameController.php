@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
 use App\Repository\CommentRepository;
 use App\Repository\GameRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -33,8 +34,13 @@ class GameController extends AbstractController
         $getGameDetails = $this->gameRepository->getGameWithRelations($slug);
         dump($getGameDetails);
 
+        //Afficher les jeux en relation avec le genre
+        $relatedGame = $this->gameRepository->getRelatedGames($getGameDetails);
+        dump($relatedGame);
+
         return $this->render('game/show.html.twig', [
             'game' => $getGameDetails,
+            'gameByGenre' => $relatedGame,
         ]);
     }
 
@@ -51,6 +57,7 @@ class GameController extends AbstractController
             'game' => $gameWithAllComments,
         ]);
     }
+
 
 
 

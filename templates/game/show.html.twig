@@ -11,15 +11,18 @@
         </div>
         <div class="col-lg-7 ">
             <h1 class="mb-4 text-green text-title">{{ game.name}}</h1>
-            <h2>Description</h2>
+
+            {% for genreValues in game.genres%}
+                <button type="button" class="btn btn-grey text-green">{{genreValues.name}}</button>
+            {% endfor %}
+
+            <br>
+
+            <h2 class="mt-3">Description</h2>
             <p class="text-white"> {{ game.description }} </p>
 
-            <h2>Genre</h2>
-            <p class="text-white">
-            {% for genreValues in game.genres%}
-                {{genreValues.name}}
-            {% endfor %}
-            </p>
+
+
 
             <h2>Langues disponibles</h2>
             {% for countriesValues in game.countries  %}
@@ -48,6 +51,16 @@
                 </button>
             </div>
         </div>
+       
+
+        <h2 class="text-green text-title text-center">Jeux similaires</h2>
+
+        <div class="container my-5">
+            <div class="row">
+            {% for game in gameByGenre | slice(0,3) %}
+                {% include "game/_card.html.twig" %}
+            {% endfor %}
+            </div>
     </div>
 </div>
 {% endblock %}
