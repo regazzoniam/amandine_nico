@@ -78,8 +78,9 @@ class GameRepository extends ServiceEntityRepository
      */
     public function getOneGame($slug, int $limit = 6): ?Game {
         return $this->createQueryBuilder('g')
-            ->select('g','c','gr', 'p','cmts')
+            ->select('g','c','gr', 'p','cmts','a')
             ->join ('g.comments', 'cmts')
+            ->join('cmts.account', 'a')
             ->join('g.countries', 'c')
             ->join('g.genres','gr')
             ->leftJoin('g.publisher', 'p')
