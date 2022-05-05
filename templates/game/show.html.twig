@@ -14,15 +14,34 @@
             <h2>Description</h2>
             <p class="text-white"> {{ game.description }} </p>
 
+            <h2>Genre</h2>
+            <p class="text-white">
+            {% for genreValues in game.genres%}
+                {{genreValues.name}}
+            {% endfor %}
+            </p>
+
             <h2>Langues disponibles</h2>
             {% for countriesValues in game.countries  %}
                 <img src="{{ countriesValues.urlFlag }}" title="{{ countriesValues.name }}">
             {% endfor %}
         </div>
+        <div>
+        </div>
+
+        <h2>Commentaires</h2>
+
+        {% for commentsValues in game.comments | slice(0,6)%}
+
+            <p class="text-white">{{commentsValues.createdAt | format_datetime('full', 'none', locale='fr')}} par <a class="text-green text-decoration-none" href="{{ path('app_account_show', {'slug' : commentsValues.account.slug})}}"><span class="text-green">{{ commentsValues.account.nickname}}</span></a>
+
+            <br>
+            {{commentsValues.content}}
+            <hr>
+                </p>
+        {% endfor %}
+
     </div>
-
-
-
 </div>
 {% endblock %}
 
