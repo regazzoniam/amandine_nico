@@ -35,7 +35,7 @@
                 {% for comment in latestCommentsArray %}
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold text-green">{{comment.game.name}}</h5>
-                        <h6 class="card-subtitle mb-2 text-white">Le {{comment.createdAt | date('d-m-Y')}} par <a class="text-green text-decoration-none" href="{{ path('app_account_show', {'slug' : comment.account.slug})}}">{{comment.account.nickname}}</a></h6>
+                        <h6 class="card-subtitle mb-2 text-white">Le {{comment.createdAt | format_datetime('full', 'none', locale='fr')}} par <a class="text-green text-decoration-none" href="{{ path('app_account_show', {'slug' : comment.account.slug})}}">{{comment.account.nickname}}</a></h6>
                         <p class="card-text text-white">{{comment.content}}</p>
                         <div class="row">
                             <div class="text-green col-1"><i class="fa-solid fa-thumbs-up"></i> {{comment.upVotes}}</div>
