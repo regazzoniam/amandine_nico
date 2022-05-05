@@ -20,4 +20,14 @@ class AccountController extends AbstractController
             'userEntity' => $userEntity,
         ]);
     }
+
+    #[Route('/utilisateurs/{slug}/commentaires', name: 'app_account_comments_show')]
+    public function userBySlugAllComments($slug): Response
+    {
+        $userEntity = $this->accountRepository->getOneAccountBySlug($slug);
+
+        return $this->render('account/account_comments.html.twig', [
+            'userEntity' => $userEntity,
+        ]);
+    }
 }
