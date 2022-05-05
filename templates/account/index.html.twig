@@ -4,9 +4,9 @@
 
 {% block body %}
     <div class="container">
-        <div class="row text-center">
-            <div class="container-user mb-5">
-                <i class="fa-solid fa-circle-user fa-6x"></i>
+        <div class="row">
+            <div class="container-user text-center mb-5">
+                <i class="my-2 fa-solid fa-circle-user fa-6x"></i>
                 <h2 class="text-green text-title mb-3">{{userEntity.nickname | capitalize }}</h2>
                     <h4 class="text-white"><i class="fa-solid fa-user"></i> {{userEntity.name}}</h4>
                     <h4 class="text-white"><i class="text-green fa-solid fa-sack-dollar"></i> {{userEntity.wallet}}€</h4>
@@ -14,30 +14,55 @@
                     <h4 class="text-white"><i class="text-red fa-solid fa-trophy"></i> {{userEntity.totalGameTime | time_to_string}}</h4>
             </div>
         
+            <h2 class="text-center text-green text-title mb-5">Jeux achetés</h2>
+            {% for library in userEntity.libraries %}
+            <div class="col-lg-4 col-md-6 card border-lightgrey bg-lightgrey">
+                {% if library.game.thumbnailCover is defined %}
+                    <a class="text-decoration-none" href="{{ path('app_game_show', {'slug': library.game.slug}) }}">
+                        <div class="image-container">
+                            <img src="{{library.game.thumbnailCover}}" class="card-img-top mx-auto text-white" alt="{{library.game.name}}">
+                        </div>
+                    </a>
+                {% endif %}
+                <div class="card-body">
+                <div class="card-text row">
+                    <p class="text-white">
+                        <i class="fa-solid fa-circle {% if library.installed == true %}text-green{% else %}text-red{% endif %}">
+                        </i>
+                        <span class="text-title">{{ library.game.name }}</span>
+                    </p>
+                    <p class="text-white">
+                        Temps de jeu: {{library.gameTime | time_to_string}}
+                    </p>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
 
-                {% for library in userEntity.libraries %}
-                <div class="col-lg-4 col-md-6 card border-lightgrey bg-lightgrey">
-                    {% if library.game.thumbnailCover is defined %}
-                        <a class="text-decoration-none" href="{{ path('app_game_show', {'slug': library.game.slug}) }}">
-                            <div class="image-container">
-                                <img src="{{library.game.thumbnailCover}}" class="card-img-top mx-auto text-white" alt="{{library.game.name}}">
-                            </div>
-                        </a>
-                    {% endif %}
-                    <div class="card-body">
-                    <div class="card-text row">
-                        <p class="text-white">
-                            <i class="fa-solid fa-circle {% if library.installed == true %}text-green{% else %}text-red{% endif %}">
-                            </i>
-                            <span class="text-title">{{ library.game.name }}</span>
-                        </p>
-                        <p class="text-white">
-                            Temps de jeu: {{library.gameTime | time_to_string}}
-                        </p>
-                    </div>
+        <h2 class="text-center text-green text-title mt-5">Commentaires</h2>
+        <div class="container">
+            {% for comment in userEntity.comments | slice(0,3)%}
+                <div class="card-body">
+                    <h5 class="card-title font-weight-bold text-green">{{comment.game.name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-white">Le {{comment.createdAt | format_datetime('full', 'none', locale='fr')}}</h6>
+                    <p class="card-text text-white">{{comment.content}}</p>
+                    <div class="row">
+                        <div class="text-green col-1"><i class="fa-solid fa-thumbs-up"></i> {{comment.upVotes}}</div>
+                        <div class="text-red col-1"><i class="fa-solid fa-thumbs-down"></i> {{comment.downVotes}}</div>
                     </div>
                 </div>
-                {% endfor %}
+            {% endfor %}
         </div>
+        {% if userEntity.comments | length > 3 %}
+            <div class="text-center">
+                <button type="button" class="btn btn-green">
+                    <a class="text-decoration-none" href="{{ path('app_account_comments_show', {'slug' : userEntity.slug})}}">
+                    Afficher tous les commentaires
+                    </a>
+                </button>
+            </div>
+        {% endif %}
+       
     </div>
 {% endblock %}
