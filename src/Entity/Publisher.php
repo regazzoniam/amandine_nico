@@ -23,9 +23,11 @@ class Publisher
     #[ORM\Column(type: 'string', length: '180')]
     private string $website;
 
+
     #[ORM\ManyToOne(targetEntity: Country::class)]
     private Country $country;
 
+    //Bilatérale car OneToMany + mappedBy
     #[ORM\OneToMany(mappedBy: 'publisher', targetEntity: Game::class)]
     private Collection $games;
 
