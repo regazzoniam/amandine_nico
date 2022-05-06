@@ -38,8 +38,8 @@ class AccountController extends AbstractController
         ]);
     }
 
-    #[Route('/utilisateurs/nouveau', name: 'app_account_new_show')]
-    public function show(Request $request, EntityManagerInterface $em): Response
+    #[Route('/utilisateurs/nouveau', name: 'app_account_new')]
+    public function createNew(Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(AccountType::class, $account = new Account());
         $form->handleRequest($request);
@@ -53,6 +53,24 @@ class AccountController extends AbstractController
         }
 
         return $this->render('account/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/utilisateurs/editer/{slug}', name: 'app_account_edit')]
+    public function edit(Account $account, Request $request, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(AccountType::class, $account);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            // dd($form->getData());
+            $account->setCreatedAt(new DateTime());
+            $em->flush();
+            return $this->redirectToRoute('app_accounts');
+        }
+
+        return $this->render('account/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
