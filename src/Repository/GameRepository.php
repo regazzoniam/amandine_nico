@@ -113,4 +113,17 @@ class GameRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    // DQL avec game.name LIKE %$Value%
+    public function findGameByApproxName($value){
+        return $this->createQueryBuilder('g')
+            ->select ('g')
+            ->where('g.name LIKE :value')
+            ->setParameter('value', '%'.$value.'%')
+            ->getQuery()
+            ->execute()
+            ;
+
+
+    }
 }
