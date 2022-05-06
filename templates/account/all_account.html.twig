@@ -16,27 +16,31 @@
     
     <div class="container">
     <table class="table table-dark table-striped">
-        <tr>
-            <td class="text-green text-title">Nom</td>
-            <td class="text-green text-title">Pseudo</td>
-            <td class="text-green text-title">Email</td>
-            <td class="text-green text-title">Date de creation</td>
-        </tr>
-        {% for account in accounts%}
-        <tr>
-            <td>
-                <button type="button" class="btn text-red">
-                    <a class="text-decoration-none" href="{{ path('app_account_edit', {'slug' : account.slug})}}">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
-                </button>        
-                {{ account.name }}
-            </td>
-            <td>{{account.nickname}}</td>
-            <td>{{account.email}}</td>
-            <td>{{account.createdAt | format_datetime('full', 'none', locale='fr')}}</td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <td class="text-green text-title">Nom</td>
+                <td class="text-green text-title">Pseudo</td>
+                <td class="text-green text-title">Email</td>
+                <td class="text-green text-title">Date de création</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for account in accounts%}
+            <tr>
+                <td>
+                    <button type="button" class="btn text-red">
+                        <a class="text-decoration-none" href="{{ path('app_account_edit', {'slug' : account.slug})}}">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                    </button>        
+                    {{ account.name }}
+                </td>
+                <td>{{account.nickname}}</td>
+                <td>{{account.email}}</td>
+                <td>{{account.createdAt | format_datetime('full', 'none', locale='fr')}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
     </div>
 
