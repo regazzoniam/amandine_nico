@@ -30,4 +30,14 @@ class AccountController extends AbstractController
             'userEntity' => $userEntity,
         ]);
     }
+
+    #[Route('/utilisateurs', name: 'app_accounts')]
+    public function getAllAccount():Response
+    {
+        $accountEntities = $this->accountRepository->findAll();
+
+        return $this->render('account/all_account.html.twig', [
+
+        ]);
+    }
 }
