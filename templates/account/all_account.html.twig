@@ -2,6 +2,39 @@
 
 {% block body %}
 
+    <h1 class="text-center text-white">Liste des comptes</h1>
+    
+    <div class="container">
+    <table class="table table-dark table-striped">
+        <tr>
+            <td class="text-green text-title">Nom</td>
+            <td class="text-green text-title">Pseudo</td>
+            <td class="text-green text-title">Email</td>
+            <td class="text-green text-title">Date de creation</td>
+        </tr>
+
+
+    {% for account in accounts%}
+<tr>
+        <td>
+     {{ account.name }}
+        </td>
+        <td>
+            {{account.nickname}}
+        </td>
+
+        <td>
+            {{account.email}}
+        </td>
+    <td>
+        {{account.createdAt | format_datetime('full', 'none', locale='fr')}}
+    </td>
+        </tr>
+    {% endfor%}
+
+    </table>
+    </div>
+
 {% endblock %}
 
 {% block title %}
