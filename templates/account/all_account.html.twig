@@ -9,7 +9,7 @@
     <div class="container-btn text-center my-4">
         <button type="button" class="btn btn-green">
             <a class="text-decoration-none" href="{{ path('app_account_new')}}">
-                <i class="fa-solid fa-plus"></i>
+                <i class="fa-solid fa-plus text-lightgrey"></i>
             </a>
         </button>
     </div>
@@ -30,7 +30,7 @@
                 <td>
                     <button type="button" class="btn text-red">
                         <a class="text-decoration-none" href="{{ path('app_account_edit', {'slug' : account.slug})}}">
-                            <i class="fa-solid fa-pen"></i>
+                            <i class="fa-solid fa-pen text-green"></i>
                         </a>
                     </button>        
                     {{ account.name }}

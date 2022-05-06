@@ -15,25 +15,25 @@ class AccountType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label'=> false,
+                'label'=> 'Nom',
                 'attr'=>[
                     'placeholder' => 'Nom'
                 ]
             ])
             ->add('email', TextType::class, [
-                'label'=> false,
+                'label'=> 'Email',
                 'attr'=>[
                     'placeholder' => 'Email'
                 ]
             ])
             ->add('nickname', TextType::class, [
-                'label'=> false,
+                'label'=> 'Pseudo',
                 'attr'=>[
                     'placeholder' => 'Pseudo'
                 ]
             ])
             ->add('slug', TextType::class, [
-                'label'=> false,
+                'label'=> 'Slug',
                 'attr'=>[
                     'placeholder' => 'Slug'
                 ]
