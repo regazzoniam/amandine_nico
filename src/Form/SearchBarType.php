@@ -3,23 +3,31 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchBarType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('searchValue')
-            ->add('submit', SubmitType::class, [
-                'label' => '<i class="fa-regular fa-magnifying-glass"></i>',
-                'label_html' => true,
+            ->add('searchValue', TextType::class, [
+                //On peut renvoyer une donnée vide
+                'required' => false,
                 'attr' => [
-                        'class' => 'btn btn-primary',
-                        'placeholder' => 'Search',
+                    'placeholder' => 'Search',
                 ]
             ])
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+           'attr' => [
+               'action' => '/search' // Définit à la main l'action du formulaire
+           ]
+        ]);
     }
 }
