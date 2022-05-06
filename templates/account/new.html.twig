@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body%}
+    <div class="container text-white">
+        {{ form_start(form)}}
+        {{ form_end(form)}}
+    </div>
+{% endblock %}
