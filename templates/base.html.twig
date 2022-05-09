@@ -13,7 +13,7 @@
 
     </head>
     <body>
-        <header>
+        {# <header>
             {% block navBar %}
                 {% include 'common/navBar.html.twig' %}
                 <section class="global-section"></section>
@@ -24,6 +24,8 @@
         <footer>
             {% block footer %}
             {% endblock %}
-        </footer>
+        </footer> #}
+        {% block content %}
+        {% endblock %}
     </body>
 </html>

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <header>
+        {% block navBar %}
+            {% include 'common/navBar.html.twig' %}
+            <section class="global-section"></section>
+        {% endblock %}
+    </header>
+    {% block body %}
+    {% endblock %}
+    <footer>
+        {% block footer %}
+        {% endblock %}
+    </footer>
+{% endblock %}
