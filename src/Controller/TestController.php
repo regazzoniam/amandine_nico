@@ -24,7 +24,7 @@ class TestController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $publisherEntity->setCreatedAt(new DateTime());
             $em->persist($form->getData());
-            $em->flush;
+            $em->flush();
             dump($publisherEntity);
         }
 
