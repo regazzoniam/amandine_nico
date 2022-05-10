@@ -10,6 +10,7 @@ use App\Repository\GenreRepository;
 use DateTime;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,18 +18,23 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminGenreController extends AbstractController
 {
-    public function __construct(private GenreRepository $genreRepository, private EntityManagerInterface $em) { }  
+    public function __construct(private GenreRepository $genreRepository, private EntityManagerInterface $em, private PaginatorInterface $paginator) { }  
     
     #[Route('/admin/genre_all', name: 'app_admin_genre_all')]
-    public function list(): Response
+    public function list(Request $request): Response
     {
-        $genres = $this->genreRepository->findAll() ;
-        dump($genres);
+        $qb = $this->genreRepository->getQbAll();
+        $pagination = $this->paginator->paginate(
+            $qb,
+            $request->query->getInt('page',1),
+            5
+        );
 
         return $this->render('admin_genre/all.html.twig', [
-            'genres' => $genres,
+            'pagination' => $pagination,
         ]);
     }
+
     #[Route('/admin/genre/{slug}', name: 'app_admin_genre_details')]
     public function details($slug): Response
     {

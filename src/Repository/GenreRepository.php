@@ -34,4 +34,9 @@ class GenreRepository extends ServiceEntityRepository
         }
     }
 
+    // fonction de pagination
+    public function getQbAll(){
+        return $this->createQueryBuilder('a');
+    }
+
 }
