@@ -1,0 +1,14 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Hello AdminGenreController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-green text-title">Tous les jeux asociés au pays {{country.name}}</h2>
+        <ul>
+        {% for game in country.games %}
+            <li class="text-white">{{game.name}}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

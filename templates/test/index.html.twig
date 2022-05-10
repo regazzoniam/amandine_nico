@@ -3,11 +3,21 @@
 {% block title %}Hello TestController!{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
+    {# pour avoir le nombre total d'accounts #}
+    <h1>{{ pagination.getTotalItemCount }}</h1>
+    {% for account in pagination %}
+        <p>{{account.name}}</p>
+    {% endfor %}
+
+    <div class="pagination">
+        {# pour avoir les buttons des pages #}
+        {{ knp_pagination_render(pagination)}}
+    </div>
+    {# {{ form_start(form) }}
         {{ form_row(form.name)}}
         {{ form_row(form.website)}}
         {{ form_row(form.slug)}}
         {{ form_row(form.country)}}
         <button type="submit" class="btn btn-green">Valider</button>
-    {{ form_end(form) }}
+    {{ form_end(form) }} #}
 {% endblock %}

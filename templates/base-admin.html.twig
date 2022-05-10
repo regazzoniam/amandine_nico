@@ -10,35 +10,36 @@
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0 text-white">
+                        <a href="{{ path('app_admin') }}" class="nav-link align-middle px-0 text-green">
                             <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
                         </a>
                     </li>
                     {# <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fa-solid fa-gauge-max"></i><span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
-                    </li>
+                    </li>#}
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Comment</span></a>
+                        <a href="{{ path('app_admin_country_all') }}" class="nav-link px-0 align-middle text-white">
+                            <span class="ms-1 d-none d-sm-inline">Country</span> 
+                        </a>
                     </li>
-                    <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Country</span></a>
-                    </li>
-                    <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Game</span> </a>
+                    {# <li>
+                        <a href="{{ path('app_admin_genre_all') }}" class="nav-link px-0 align-middle text-white">
+                            <i class="fs-4 bi-people"></i> 
+                            <span class="ms-1 d-none d-sm-inline">Game</span> 
+                        </a>
                     </li> #}
                     <li>
-                        <a href="{{ path('app_admin_genre_all') }}" class="nav-link px-0 align-middle text-green">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Genre</span> </a>
+                        <a href="{{ path('app_admin_genre_all') }}" class="nav-link px-0 align-middle text-white">
+                            <i class="fs-4 bi-people"></i> 
+                            <span class="ms-1 d-none d-sm-inline">Genre</span> 
+                        </a>
                     </li>
                     {# <li>
                         <a href="#" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Library</span> </a>
-                    </li>
-                    <li>
+                    </li> #}
+                    {# <li>
                         <a href="#" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Publisher</span> </a>
                     </li> #}

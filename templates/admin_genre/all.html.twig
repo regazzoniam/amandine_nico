@@ -6,8 +6,9 @@
     <div class="container text-center">
         <h1 class="text-center text-white">Liste des genres</h1>
         <div class="container-btn text-center my-4">
+        {# ajouter un genre #}
             <button type="button" class="btn btn-green">
-                <a class="text-decoration-none" href="{{ path('app_admin_genre_all')}}">
+                <a class="text-decoration-none" href="{{ path('app_admin_genre_add')}}">
                     <i class="fa-solid fa-plus text-lightgrey"></i>
                 </a>
             </button>
@@ -26,16 +27,19 @@
                         {{ genre.name }}
                     </td>
                     <td>
+                    {# Voir le détail du genre #}
                     <button type="button" class="btn">
                         <a class="text-decoration-none" href="{{ path('app_admin_genre_details', {'slug': genre.slug}) }}">
                             <i class="fa-solid fa-eye text-white"></i>
                         </a>
                     </button>
+                    {# modifier le genre #}
                     <button type="button" class="btn">
-                        <a class="text-decoration-none" href="">
+                        <a class="text-decoration-none" href="{{ path('app_admin_genre_edit', {'slug': genre.slug})}}">
                             <i class="fa-solid fa-pen text-green"></i>
                         </a>
                     </button>
+                    {# supprimer le genre #}
                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal_{{ genre.slug  }}">
                         <i class="fa-solid fa-minus text-red"></i>
                     </button>

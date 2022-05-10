@@ -2,11 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Genre;
+use App\Form\AccountType;
+use App\Form\GenreType;
 use App\Repository\GameRepository;
 use App\Repository\GenreRepository;
+use DateTime;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -43,6 +48,43 @@ class AdminGenreController extends AbstractController
         $this->em->flush();
 
         return $this->redirectToRoute('app_admin_genre_all');
+    }
+
+    #[Route('/admin/genre_edit/{slug}', name: 'app_admin_genre_edit')]
+    public function edit($slug, Request $request): Response
+    {
+        $genreEntity = $this->genreRepository->findOneBy(['slug' => $slug]) ;
+
+        $form = $this->createForm(GenreType::class, $genreEntity);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            // dd($form->getData());
+            $this->em->flush();
+            return $this->redirectToRoute('app_admin_genre_all');
+        }
+
+        return $this->render('admin_genre/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/admin/genre_add', name: 'app_admin_genre_add')]
+    public function add(Request $request): Response
+    {
+        $form = $this->createForm(GenreType::class, new Genre());
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $genre = $form->getData();
+            $this->em->persist($form->getData());
+            $this->em->flush();
+            return $this->redirectToRoute('app_admin_genre_all');
+        }
+
+        return $this->render('admin_genre/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
     
 }
