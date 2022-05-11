@@ -48,7 +48,7 @@ class ChangeAllPasswordCommand extends Command
             $this->entityManager->persist($accountEntity);
         }
         $this->entityManager->flush();
-        $output->writeln("Il y a ".count($accountEntities)."mot de passe qui ont été changé !");
+        $output->writeln("Il y a ".count($accountEntities)." mots de passe qui ont été changé !");
 
         return Command::SUCCESS;
     }
