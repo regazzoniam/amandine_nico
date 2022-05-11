@@ -15,12 +15,32 @@
                 <li class="nav-item">
                     <a class="nav-link navbar-title text-green h1" href="{{ path('app_accounts') }}">Comptes</a>
                 </li>
+                {# si l'utilisateur est un admin #}
+                 {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link navbar-title text-green h1" href="{{ path('app_admin') }}">Dashboard</a>
+                </li
+                 {% endif %}
             </ul>
         </div>
-
-        {# Render la réponse d'une méthode d'un controleur #}
+        {# Search bar (render : return la réponse d'une méthode d'un controleur) #}
         {{
             render(controller('App\\Controller\\SearchBarController::index'))
         }}
     </div>
+    {# pour logout #}
+    {% if app.user %}
+    <div class="nav-item">
+        <a class="nav-link navbar-title text-green h1" href="{{ path('app_logout') }}">
+            <i class="fa-solid fa-user-check"></i>
+        </a>
+    </div>
+    {# pour login #}
+    {% else %}
+    <div class="nav-item">
+        <a class="nav-link navbar-title text-white h1" href="{{ path('app_login') }}">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    </div>
+    {% endif %}
 </nav>
