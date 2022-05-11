@@ -1,16 +1,16 @@
 {% extends 'base-admin.html.twig' %}
 
-{% block title %}Hello AdminGenreController!{% endblock %}
+{% block title %}Hello AdminGameController!{% endblock %}
 
 {% block body %}
     <div class="container text-center">
-        <h1 class="text-center text-white">Liste des genres</h1>
-        {# nombre de pays trouvés #}
-        <div class="container text-green">{{ pagination.getTotalItemCount }} genres trouvés !</div>
+        <h1 class="text-center text-white">Liste des jeux</h1>
+        {# nombre de jeux trouvés #}
+        <div class="container text-green">{{ pagination.getTotalItemCount }} jeux trouvés !</div>
         <div class="container-btn text-center my-4">
-        {# ajouter un genre #}
+        {# ajouter un jeu #}
             <button type="button" class="btn btn-green">
-                <a class="text-decoration-none" href="{{ path('app_admin_genre_add')}}">
+                <a class="text-decoration-none" href="{{path('app_admin_game_add')}}">
                     <i class="fa-solid fa-plus text-lightgrey"></i>
                 </a>
             </button>
@@ -23,39 +23,39 @@
                 </tr>
             </thead>
             <tbody>
-                {# on parcours le tableau pagination qui est un select * from country #}
-                {% for genre in pagination %}
+                {# on parcours le tableau pagination qui est un select * from game #}
+                {% for game in pagination %}
                 <tr>
                     <td>
-                        {{ genre.name }}
+                        {{ game.name }}
                     </td>
                     <td>
-                    {# Voir le détail du genre #}
+                    {# Voir le détail du jeu #}
                     <button type="button" class="btn">
-                        <a class="text-decoration-none" href="{{ path('app_admin_genre_details', {'slug': genre.slug}) }}">
+                        <a class="text-decoration-none" href="{{path('app_admin_game_details', {'slug': game.slug})}}">
                             <i class="fa-solid fa-eye text-white"></i>
                         </a>
                     </button>
-                    {# modifier le genre #}
+                    {# modifier le jeu #}
                     <button type="button" class="btn">
-                        <a class="text-decoration-none" href="{{ path('app_admin_genre_edit', {'slug': genre.slug})}}">
+                        <a class="text-decoration-none" href="{{path('app_admin_game_edit', {'slug': game.slug})}}">
                             <i class="fa-solid fa-pen text-green"></i>
                         </a>
                     </button>
-                    {# supprimer le genre #}
-                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal_{{ genre.slug  }}">
+                    {# supprimer le jeu #}
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal_{{ game.slug  }}">
                         <i class="fa-solid fa-minus text-red"></i>
                     </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="modal_{{ genre.slug }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modal_{{ game.slug }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title text-grey" id="exampleModalLabel">Confirmer la suppression de {{ genre.name }}</h5>
+                            <h5 class="modal-title text-grey" id="exampleModalLabel">Confirmer la suppression de {{ game.name }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-footer">
-                            <a type="button" class="btn btn-secondary" href="{{ path('app_admin_genre_delete', {'slug': genre.slug})}}">Oui</a>
+                            <a type="button" class="btn btn-secondary" href="{{ path('app_admin_game_delete', {'slug': game.slug})}}">Oui</a>
                             <a type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
                         </div>
                         </div>
