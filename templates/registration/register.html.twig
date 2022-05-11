@@ -1,0 +1,16 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="container text-white">
+        <h1 class="text-title text-green">Créer un compte</h1>
+        {{ form_start(registrationForm) }}
+            {# {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            {{ form_row(registrationForm.agreeTerms) }} #}
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

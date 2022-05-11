@@ -8,13 +8,22 @@
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    {% if app.user %}
+    {# {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
-    {% endif %}
+    {% endif %} #}
+
+
 
     <div class="container">
+        <h1 class="h3 mb-3 font-weight-normal text-title text-white">Pas de compte ?</h1>
+        <a class="btn btn-red text-grey" href="{{path('app_register')}}">
+            Créer un compte
+        </a>
+
+        <hr class="text-white">
+
         <h1 class="h3 mb-3 font-weight-normal text-title text-white">Connectez-vous</h1>
         <div class="labels my-3 text-white">
             <label for="inputEmail">Email</label>
@@ -25,9 +34,9 @@
                    value="{{ csrf_token('authenticate') }}"
             >
         </div>
-        <button class="btn btn-lg btn-green" type="submit">
+        <button class="btn btn-green text-grey" type="submit">
             Se connecter
-        </button>
+        </button>       
     </div>
 </form>
 {% endblock %}

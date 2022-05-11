@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[UniqueEntity(fields: 'email'), UniqueEntity(fields: 'name')]
 #[ORM\Entity(repositoryClass: AccountRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Account implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
@@ -29,22 +30,22 @@ class Account implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $nickname;
 
     #[ORM\Column(type: 'float')]
-    private float $wallet;
+    private float $wallet = 0;
 
     #[ORM\Column(type: 'json')]
-    private $roles = [];
+    private $roles = ["ROLE_USER"];
 
     #[ORM\Column(type: 'string')]
     private $password;
+
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    private string $slug;
 
     #[ORM\OneToMany(mappedBy: 'account', targetEntity: Library::class)]
     private Collection $libraries;
 
     #[ORM\OneToMany(mappedBy: 'account', targetEntity: Comment::class)]
     private Collection $comments;
-
-    #[ORM\Column(type: 'string', length: 255, unique: true)]
-    private string $slug;
 
     #[ORM\Column(type: 'datetime')]
     protected ?DateTime $createdAt;
