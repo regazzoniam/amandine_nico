@@ -123,7 +123,10 @@ class GameRepository extends ServiceEntityRepository
             ->getQuery()
             ->execute()
             ;
+    }
 
-
+    // fonction de pagination
+    public function getQbAll(){
+        return $this->createQueryBuilder('a');
     }
 }

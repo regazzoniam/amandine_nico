@@ -16,7 +16,7 @@ class AdminCountryController extends AbstractController
 {
     public function __construct(private CountryRepository $countryRepository,private EntityManagerInterface $em, private PaginatorInterface $paginator)
     { }
-
+    // Voir tous les pays
     #[Route('/admin/country_all', name: 'app_admin_country_all')]
     public function list(Request $request): Response
     {
@@ -32,6 +32,7 @@ class AdminCountryController extends AbstractController
         ]);
     }
 
+    // Voir détail d'un pays
     #[Route('/admin/country/{slug}', name: 'app_admin_country_details')]
     public function details($slug): Response
     {
@@ -43,6 +44,7 @@ class AdminCountryController extends AbstractController
         ]);
     }
 
+    // Update un pays
     #[Route('/admin/country_edit/{slug}', name: 'app_admin_country_edit')]
     public function edit($slug, Request $request): Response
     {
@@ -61,6 +63,7 @@ class AdminCountryController extends AbstractController
         ]);
     }
 
+    // Supprimer un pays
     #[Route('/admin/country_delete/{slug}', name: 'app_admin_country_delete')]
     public function delete($slug): Response
     {
@@ -71,6 +74,7 @@ class AdminCountryController extends AbstractController
         return $this->redirectToRoute('app_admin_country_all');
     }
 
+    // ajouter un pays
     #[Route('/admin/country_add', name: 'app_admin_country_add')]
     public function add(Request $request): Response
     {
