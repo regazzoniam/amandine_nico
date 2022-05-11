@@ -1,0 +1,17 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-green text-title">Tous les jeux associés associé à l'editeur  {{publisher.name}}</h2>
+        <ul>
+            {% for publisher in publisher.games %}
+                <li class="text-white">{{publisher.name}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

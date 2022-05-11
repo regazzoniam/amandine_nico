@@ -11,7 +11,7 @@
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
                         <a href="{{ path('app_admin') }}" class="nav-link align-middle px-0 text-green">
-                            <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                            <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Accueil</span>
                         </a>
                     </li>
                     {# <li>
@@ -20,7 +20,7 @@
                     </li>#}
                     <li>
                         <a href="{{ path('app_admin_country_all') }}" class="nav-link px-0 align-middle text-white">
-                            <span class="ms-1 d-none d-sm-inline">Country</span> 
+                            <span class="ms-1 d-none d-sm-inline">Pays</span>
                         </a>
                     </li>
                     {# <li>
@@ -32,17 +32,17 @@
                     <li>
                         <a href="{{ path('app_admin_genre_all') }}" class="nav-link px-0 align-middle text-white">
                             <i class="fs-4 bi-people"></i> 
-                            <span class="ms-1 d-none d-sm-inline">Genre</span> 
+                            <span class="ms-1 d-none d-sm-inline">Genre</span>
                         </a>
                     </li>
                     {# <li>
                         <a href="#" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Library</span> </a>
                     </li> #}
-                    {# <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Publisher</span> </a>
-                    </li> #}
+                     <li>
+                        <a href="{{ path('app_admin_publisher_all')}}" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline text-white">Editeur</span> </a>
+                    </li>
                 </ul>
                 <hr>
                 <div class="dropdown pb-4">
