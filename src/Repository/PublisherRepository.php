@@ -48,5 +48,9 @@ class PublisherRepository extends ServiceEntityRepository
         ;
     }
 
+    public function getQball(){
+        return $this->createQueryBuilder('p');
+    }
+
 
 }

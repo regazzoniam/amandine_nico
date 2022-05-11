@@ -5,6 +5,7 @@
 {% block body %}
     <div class="container text-center">
     <h1 class="text-center text-white">Liste des editeurs</h1>
+        <p class="text-green">{{pagination.getTotalItemCount}} éditeurs trouvés</p>
     <div class="container-btn text-center my-4">
 {#         ajouter un editeurs#}
         <button type="button" class="btn btn-green">
@@ -21,7 +22,8 @@
         </tr>
         </thead>
         <tbody>
-        {% for publisher in publishers %}
+
+        {% for publisher in pagination %}
             <tr>
                 <td>
                     {{ publisher.name }}
@@ -31,6 +33,12 @@
                     <button type="button" class="btn">
                         <a class="text-decoration-none" href="{{ path('app_admin_publisher_details', {'slug' : publisher.slug}) }}">
                             <i class="fa-solid fa-eye text-white"></i>
+                        </a>
+                    </button>
+                    {# Editer l'editeur#}
+                    <button type="button" class="btn">
+                        <a class="text-decoration-none" href="{{ path('app_admin_publisher_edit', {'slug' : publisher.slug}) }}">
+                            <i class="fa-solid fa-pen text-green"></i>
                         </a>
                     </button>
                     {# supprimer le publisher #}
@@ -55,7 +63,11 @@
                 </td>
             </tr>
         {% endfor %}
+
         </tbody>
     </table>
+        <div class="pagination text-green">
+            {{knp_pagination_render(pagination)}}
+        </div>
     </div>
 {% endblock %}

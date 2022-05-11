@@ -9,6 +9,7 @@ use App\Repository\CountryRepository;
 use App\Repository\PublisherRepository;
 use ContainerPZ2eEIT\getAdminPublisherControllerService;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,20 +18,25 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin')]
 class AdminPublisherController extends AbstractController
 {
+    private PaginatorInterface $paginator;
 
-    public function __construct(private PublisherRepository $publisherRepository, private EntityManagerInterface $em)
+    public function __construct(private PublisherRepository $publisherRepository, private EntityManagerInterface $em,PaginatorInterface $paginator)
     {
-
+        $this->paginator = $paginator;
     }
 
     #[Route('/publisher_all', name: 'app_admin_publisher_all')]
-    public function list(): Response
+    public function list(Request $request): Response
     {
-        $publishers = $this->publisherRepository->findAll();
-        dump($publishers);
+        $qb = $this->publisherRepository->getQball();
+        $pagination =$this->paginator->paginate(
+            $qb,
+            $request->query->getInt('page',1),
+        );
 
         return $this->render('admin_publisher/all.html.twig', [
-            'publishers' => $publishers
+
+            'pagination' => $pagination,
         ]);
     }
 
@@ -78,7 +84,7 @@ class AdminPublisherController extends AbstractController
         ]);
     }
 
-    #[Route('/publisher_add', name: 'app_admin_publisher_add')]
+    #[Route('/publisher_edit/{slug}', name: 'app_admin_publisher_edit')]
     public function edit($slug, Request $request) :Response {
         $publisherEntity = $this->publisherRepository->findOneBy(['slug' => $slug]);
 
@@ -90,7 +96,9 @@ class AdminPublisherController extends AbstractController
             return $this->redirectToRoute('app_admin_publisher_all');
         }
 
-//        return $this->
+        return $this->render('admin_publisher/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
 
     }
 
