@@ -44,6 +44,20 @@ class CommentRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findOneByUserAndGame($user, $gameEntity){
+        return $this->createQueryBuilder('comment')
+            ->join('comment.game', 'g')
+            ->join('comment.account', 'a')
+            ->where('g = :game')
+            ->andWhere('a = :account')
+            ->setParameter('account',$user)
+            ->setParameter('game', $gameEntity)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+    }
+
 
 
 }

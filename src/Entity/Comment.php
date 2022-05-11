@@ -22,6 +22,9 @@ class Comment
     #[ORM\Column(type: 'integer')]
     private int $downVotes;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $note;
+    
     #[ORM\Column(type: 'datetime')]
     protected ?DateTime $createdAt;
 
@@ -32,6 +35,10 @@ class Comment
     #[ORM\ManyToOne(targetEntity: Game::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private Game $game;
+
+
+
+
 
     public function __construct()
     {
@@ -119,5 +126,18 @@ class Comment
     {
         $this->createdAt = $createdAt;
     }
+
+    public function getNote(): ?int
+    {
+        return $this->note;
+    }
+
+    public function setNote(?int $note): self
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
 
 }
