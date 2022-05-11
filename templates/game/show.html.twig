@@ -10,10 +10,10 @@
             </div>
         </div>
         <div class="col-lg-7 ">
-            <h1 class="mb-4 text-green text-title">{{ game.name}}</h1>
+            <h1 class="mb-4 text-green text-title">{{ game.name }}</h1>
 
-            {% for genreValues in game.genres%}
-                <button type="button" class="btn btn-grey text-green">{{genreValues.name}}</button>
+            {% for genreValues in game.genres %}
+                <button type="button" class="btn btn-grey text-green">{{ genreValues.name }}</button>
             {% endfor %}
 
             <br>
@@ -22,10 +22,8 @@
             <p class="text-white"> {{ game.description }} </p>
 
 
-
-
             <h2>Langues disponibles</h2>
-            {% for countriesValues in game.countries  %}
+            {% for countriesValues in game.countries %}
                 <img src="{{ countriesValues.urlFlag }}" title="{{ countriesValues.name }}">
             {% endfor %}
         </div>
@@ -34,22 +32,41 @@
 
         <h2 class="text-center text-green text-title">Les derniers commentaires</h2>
         <div class="container my-5">
-            {% for comment in game.comments | slice(0,6)%}
-            <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-white">Le {{comment.createdAt | format_datetime('full', 'none', locale='fr')}} par <a class="text-green text-decoration-none" href="{{ path('app_account_show', {'slug' : comment.account.slug})}}">{{comment.account.nickname}}</a></h6>
-                <p class="card-text text-white">{{comment.content}}</p>
-                <div class="row">
-                    <div class="text-green col-1"><i class="fa-solid fa-thumbs-up"></i> {{comment.upVotes}}</div>
-                    <div class="text-red col-1"><i class="fa-solid fa-thumbs-down"></i> {{comment.downVotes}}</div>
+            {% for comment in game.comments | slice(0,6) %}
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-white">
+                        Le {{ comment.createdAt | format_datetime('full', 'none', locale='fr') }} par <a
+                                class="text-green text-decoration-none"
+                                href="{{ path('app_account_show', {'slug' : comment.account.slug}) }}">{{ comment.account.nickname }}</a>
+                    </h6>
+                    <p class="card-text text-white">{{ comment.content }}</p>
+                    <div class="row">
+                        <div class="text-green col-1"><i class="fa-solid fa-thumbs-up"></i> {{ comment.upVotes }}</div>
+                        <div class="text-red col-1"><i class="fa-solid fa-thumbs-down"></i> {{ comment.downVotes }}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
             <div class="text-center">
                 <button type="button" class="btn btn-green">
-                    <a class="text-decoration-none" href="{{ path('app_game_comments', {'slug' : game.slug})}}">
+                    <a class="text-decoration-none" href="{{ path('app_game_comments', {'slug' : game.slug}) }}">
                         Afficher tous les commentaires</a>
                 </button>
             </div>
+        </div>
+
+        <div class="container">
+            {% if app.user %}
+                {% if commentEntity == null %}
+                    {{ form_start(form) }}
+                    {{ form_row(form.content) }}
+                    {{ form_row(form.note) }}
+                    <button class="btn btn btn-green" type="submit">Envoyer</button>
+                    {{ form_end(form) }}
+                {% endif %}
+            {% endif %}
+
+
         </div>
 
 
@@ -57,15 +74,15 @@
 
         <div class="container my-5">
             <div class="row">
-            {% for game in gameByGenre | slice(0,3) %}
-                {% include "game/_card.html.twig" %}
-            {% endfor %}
+                {% for game in gameByGenre | slice(0,3) %}
+                    {% include "game/_card.html.twig" %}
+                {% endfor %}
             </div>
+        </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
 
-{% block title %}
+    {% block title %}
 
-{% endblock %}
+    {% endblock %}
 
