@@ -12,8 +12,12 @@
                 <li class="nav-item">
                     <a class="nav-link navbar-title text-green h1" href="{{ path('app_publisher') }}">Editeurs</a>
                 </li>
+{#                A ajouter dans la partie administrateur#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link navbar-title text-green h1" href="{{ path('app_accounts') }}">Comptes</a>#}
+{#                </li>#}
                 <li class="nav-item">
-                    <a class="nav-link navbar-title text-green h1" href="{{ path('app_accounts') }}">Comptes</a>
+                    <a class="nav-link navbar-title text-green h1">Forum</a>
                 </li>
                 {# si l'utilisateur est un admin #}
                  {% if is_granted('ROLE_ADMIN') %}
@@ -21,6 +25,7 @@
                     <a class="nav-link navbar-title text-green h1" href="{{ path('app_admin') }}">Dashboard</a>
                 </li
                  {% endif %}
+
             </ul>
         </div>
         {# Search bar (render : return la réponse d'une méthode d'un controleur) #}

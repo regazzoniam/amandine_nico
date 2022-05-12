@@ -1,0 +1,74 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Hello AdminForumController!{% endblock %}
+
+{% block body %}
+    <h1 class="text-green text-center">Bienvenue sur la gestion de vos Forums</h1>
+    <div class="container text-center">
+        <button type="button" class="btn btn-green">
+            <a class="text-decoration-none" href="{{ path('app_admin_forum_add') }}">
+                <i class="fa-solid fa-plus text-lightgrey"></i>
+            </a>
+        </button>
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+                <td class="text-green text-title">Nom</td>
+                <td class="text-green text-title">Nombre de topics</td>
+                <td class="text-green text-title">Date de création</td>
+                <td class="text-green text-title">Actions</td>
+            </tr>
+            </thead>
+
+            {% for forum in forumEntities %}
+                <tr>
+                    <td>
+                        {{ forum.title }}
+                    </td>
+                    <td>{{ forum.topics |length }}</td>
+                    <td>{{ forum.createdAt | date('Y/m/d') }}</td>
+
+                    <td>
+                        {# Voir le détail du forum #}
+                        <button type="button" class="btn">
+                            <a class="text-decoration-none">
+                                <i class="fa-solid fa-eye text-white"></i>
+                            </a>
+                        </button>
+                        {# Modifier le forum #}
+                        <button type="button" class="btn">
+                            <a class="text-decoration-none"
+                               href="{{ path('app_admin_forum_edit', {'id' : forum.id}) }}">
+                                <i class="fa-solid fa-pen text-green"></i>
+                            </a>
+                        </button>
+                        {# supprimer le forum #}
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal_{{ forum.id }}">
+                            <i class="fa-solid fa-minus text-red"></i>
+                        </button>
+                        <div class="modal fade" id="modal_{{ forum.id }}" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-grey" id="exampleModalLabel">Confirmer la
+                                            suppression de {{ forum.title }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a type="button" class="btn btn-secondary"
+                                           href="{{ path('app_admin_forum_delete', {'id': forum.id}) }}">Oui</a>
+                                        <a type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}
