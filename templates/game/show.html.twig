@@ -55,13 +55,21 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container text-white">
             {% if app.user %}
                 {% if commentEntity == null %}
                     {{ form_start(form) }}
                     {{ form_row(form.content) }}
                     {{ form_row(form.note) }}
-                    <button class="btn btn btn-green" type="submit">Envoyer</button>
+                    <p>Note</p>
+                    <div class="rating mb-3">
+                        <i class="rating__star far fa-star" data-value-comment="1"></i>
+                        <i class="rating__star far fa-star" data-value-comment="2"></i>
+                        <i class="rating__star far fa-star" data-value-comment="3"></i>
+                        <i class="rating__star far fa-star" data-value-comment="4"></i>
+                        <i class="rating__star far fa-star" data-value-comment="5"></i>
+                    </div>
+                    <button class="btn btn btn-green" type="submit">Envoyer</button> 
                     {{ form_end(form) }}
                 {% endif %}
             {% endif %}
