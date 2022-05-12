@@ -18,8 +18,7 @@ class Topic
     #[ORM\Column(type: 'datetime')]
     private $createdAt;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $createdBy;
+
 
     #[ORM\Column(type: 'string', length: 255)]
     private $title;
@@ -30,6 +29,10 @@ class Topic
 
     #[ORM\OneToMany(mappedBy: 'topic', targetEntity: Message::class)]
     private $messages;
+
+    #[ORM\ManyToOne(targetEntity: Account::class, inversedBy: 'topics')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $createdBy;
 
     public function __construct()
     {
@@ -52,18 +55,7 @@ class Topic
 
         return $this;
     }
-
-    public function getCreatedBy(): ?string
-    {
-        return $this->createdBy;
-    }
-
-    public function setCreatedBy(string $createdBy): self
-    {
-        $this->createdBy = $createdBy;
-
-        return $this;
-    }
+    
 
     public function getTitle(): ?string
     {
@@ -115,6 +107,18 @@ class Topic
                 $message->setTopic(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?Account
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?Account $createdBy): self
+    {
+        $this->createdBy = $createdBy;
 
         return $this;
     }

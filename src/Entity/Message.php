@@ -16,8 +16,6 @@ class Message
     #[ORM\Column(type: 'datetime')]
     private $createdAt;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $createdBy;
 
     #[ORM\Column(type: 'text')]
     private $content;
@@ -25,6 +23,10 @@ class Message
     #[ORM\ManyToOne(targetEntity: Topic::class, inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
     private $topic;
+
+    #[ORM\ManyToOne(targetEntity: Account::class, inversedBy: 'messages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $createdBy;
 
     public function getId(): ?int
     {
@@ -43,17 +45,6 @@ class Message
         return $this;
     }
 
-    public function getCreatedBy(): ?string
-    {
-        return $this->createdBy;
-    }
-
-    public function setCreatedBy(string $createdBy): self
-    {
-        $this->createdBy = $createdBy;
-
-        return $this;
-    }
 
     public function getContent(): ?string
     {
@@ -75,6 +66,18 @@ class Message
     public function setTopic(?Topic $topic): self
     {
         $this->topic = $topic;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?Account
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?Account $createdBy): self
+    {
+        $this->createdBy = $createdBy;
 
         return $this;
     }
