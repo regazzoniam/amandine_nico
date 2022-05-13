@@ -17,7 +17,7 @@
 {#                    <a class="nav-link navbar-title text-green h1" href="{{ path('app_accounts') }}">Comptes</a>#}
 {#                </li>#}
                 <li class="nav-item">
-                    <a class="nav-link navbar-title text-green h1">Forum</a>
+                    <a class="nav-link navbar-title text-green h1" href="{{ path('app_forum_all') }}">Forums</a>
                 </li>
                 {# si l'utilisateur est un admin #}
                  {% if is_granted('ROLE_ADMIN') %}

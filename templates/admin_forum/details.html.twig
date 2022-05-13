@@ -1,0 +1,14 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Hello AdminGenreController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-green text-title">Tous les topics associés au forum {{forum.title}}</h2>
+        <ul>
+        {% for topic in forum.topics %}
+            <li class="text-white">{{topic.title}}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

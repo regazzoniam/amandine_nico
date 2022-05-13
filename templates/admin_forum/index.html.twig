@@ -31,7 +31,7 @@
                     <td>
                         {# Voir le détail du forum #}
                         <button type="button" class="btn">
-                            <a class="text-decoration-none">
+                            <a class="text-decoration-none" href="{{ path('app_admin_forum_details', {'id' : forum.id}) }}">
                                 <i class="fa-solid fa-eye text-white"></i>
                             </a>
                         </button>

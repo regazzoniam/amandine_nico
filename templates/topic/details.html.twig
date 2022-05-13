@@ -1,0 +1,53 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Hello ForumController!{% endblock %}
+
+{% block body %}
+
+<div class="container mx-2">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{path('app_forum_all')}}" class="text-decoration-none text-green">Tous les forums</a></li>
+        {# à modifier !!! #}
+        <li class="breadcrumb-item"><a href="{{path('app_forum_details', {'id': forum.id})}}" class="text-decoration-none text-green">Forum "{{forum.title}}"</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Topic "{{topic.title}}"</li>
+      </ol>
+    </nav>
+</div>
+
+    <div class="container w-100 mb-3">
+        <h2 class="text-title text-grey text-center bg-green rounded-top mb-0">Messages du topic <br>{{topic.title}}</h2>
+        <div class="bg-grey text-white rounded-bottom mt-0 p-2 w-100 d-flex justify-content-center flex-column align-items-center">
+
+        {% if topic.messages | length > 0 %}
+
+            
+                {% for message in topic.messages %}
+                <div class="w-50 opacity-50 bg-white text-grey rounded-bottom mt-0 p-2">
+                    <div class="container-user text-center mb-5">
+                        <div class="d-flex justify-content-between">
+                            <div lass="contenainer-user">
+                                <i class="my-2 fa-solid fa-circle-user fa-x4 mx-2"></i>
+                                <p class="my-1 text-red">{{message.createdBy.name}}</p>
+                            </div>
+                            <br>
+                            <p class="my-1">{{message.createdAt | format_datetime('full', 'none', locale='fr') }}</p>
+                        </div>
+                        <hr>
+                        <p>{{message.content}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            
+
+        {% endif %}
+
+        </div>
+    </div>
+    <div class="container w-50 text-white">
+        {# ajouter un message #}
+
+        {{ form_start(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

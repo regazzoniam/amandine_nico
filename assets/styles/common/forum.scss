@@ -1,0 +1,9 @@
+.forum-list {
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.forum-list:hover {
+    color: $red;
+    font-weight: bold;
+}

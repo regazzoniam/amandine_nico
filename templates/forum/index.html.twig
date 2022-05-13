@@ -1,0 +1,23 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Hello ForumController!{% endblock %}
+
+{% block body %}
+
+    <div class="container mx-2">
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Tous les forums</li>
+        </ol>
+        </nav>
+    </div>
+
+    <div class="container w-50">
+        <h2 class="text-title text-grey text-center bg-green rounded-top mb-0">Forums</h2>
+        <ul class="bg-grey rounded-bottom mt-0 py-2">
+        {% for forum in forums %}
+            <li class="forum-list"><a href="{{path('app_forum_details', {'id': forum.id})}}" class="text-white text-decoration-none">{{forum.title}}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

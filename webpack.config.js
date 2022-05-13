@@ -23,6 +23,12 @@ Encore
     .addEntry('scripts', './assets/scripts/main.ts')
     .addStyleEntry('styles', './assets/styles/main.scss')
 
+    // Pour pouvoir mettre des images sur notre site
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[ext]'
+    })
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
