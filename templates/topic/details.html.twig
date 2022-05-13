@@ -1,0 +1,57 @@
+{% extends 'base-front.html.twig' %}
+
+{% block body %}
+
+<h1 class="text-green text-center">Topics du Forum {{forumDetails.title}}</h1>
+    <br>
+<div class="text-center">
+    <button type="button" class="btn btn-green">
+        <a class="text-decoration-none" href="{{ path('app_topic_add', {'forum_id' : forumDetails.id}) }}">
+            <i class="fa-solid fa-plus text-lightgrey"></i>
+        </a>
+    </button>
+</div>
+    <br>
+<div class="container">
+    <table class="table table-dark table-striped text-center">
+        <thead>
+        <tr>
+            <td> Nom du topic</td>
+            <td> Date de création</td>
+            <td>Nombre de messages</td>
+            <td>Supprimer un topic</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for topic in forumDetails.topics %}
+            <tr>
+                <td>
+                    <a class="text-decoration-none" href="{{ path('app_topic_details', {'id' : topic.id}) }}">{{ topic.title }}</a>
+                </td>
+                <td>
+                    {{ topic.createdAt | date('Y/m/d') }}
+                </td>
+                <td>
+                    {{ topic.messages | length }}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-green">
+                        <a class="text-decoration-none" href="{{ path('app_topic_delete', {'id' : topic.id}) }}">
+                            <i class="fa-solid fa-minus"></i>
+                        </a>
+                    </button>
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

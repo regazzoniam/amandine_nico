@@ -1,0 +1,14 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-green text-title">Details du forum {{forumDetails.title}}</h2>
+        <ul>
+            {% for topic in forumDetails.topics %}
+                <li class="text-white">{{topic.title}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

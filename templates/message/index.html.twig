@@ -1,0 +1,29 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Hello MessageController!{% endblock %}
+
+{% block body %}
+    <h1 class="text-green text-center">Message du topic {{ topicDetails.title }}</h1>
+    <br>
+
+    {% if topicDetails.messages |length == 0 %}
+        Il n'y a encore aucun message dans cette rubrique
+
+    {% endif %}
+    {% for topic in topicDetails.messages %}
+        <div class="container ">
+            <div class="row">
+                <div class="col-6 bg-green py-3">
+                    Créé par {{ topic.createdBy.name }} le {{ topic.createdAt | date('Y/m/d') }}
+                    <hr>
+                    Commentaire : <br>
+                    {{ topic.content }}
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+
+
+{% endblock %}

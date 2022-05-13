@@ -84,4 +84,15 @@ class AdminForumController extends AbstractController
 
     }
 
+    #[Route('/forum_details/{id}', name: 'app_admin_forum_details')]
+    public function details($id)
+    {
+        $forumDetails =$this->forumRepository->findOneBy(['id' => $id]);
+
+        return $this->render('admin_forum/details.html.twig',[
+           'forumDetails' => $forumDetails
+        ]);
+    }
+
+
 }

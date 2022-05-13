@@ -4,12 +4,15 @@
 
 {% block body %}
     <h1 class="text-green text-center">Bienvenue sur la gestion de vos Forums</h1>
+    <br>
+
     <div class="container text-center">
         <button type="button" class="btn btn-green">
             <a class="text-decoration-none" href="{{ path('app_admin_forum_add') }}">
                 <i class="fa-solid fa-plus text-lightgrey"></i>
             </a>
         </button>
+        <hr>
         <table class="table table-dark table-striped">
             <thead>
             <tr>
@@ -31,14 +34,13 @@
                     <td>
                         {# Voir le détail du forum #}
                         <button type="button" class="btn">
-                            <a class="text-decoration-none">
+                            <a class="text-decoration-none" href="{{ path('app_admin_forum_details', {'id' : forum.id}) }}">
                                 <i class="fa-solid fa-eye text-white"></i>
                             </a>
                         </button>
                         {# Modifier le forum #}
                         <button type="button" class="btn">
-                            <a class="text-decoration-none"
-                               href="{{ path('app_admin_forum_edit', {'id' : forum.id}) }}">
+                            <a class="text-decoration-none" href="{{ path('app_admin_forum_edit', {'id' : forum.id}) }}">
                                 <i class="fa-solid fa-pen text-green"></i>
                             </a>
                         </button>
