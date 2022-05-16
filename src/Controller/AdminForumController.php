@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Forum;
 use App\Form\ForumType;
+use App\Form\SearchForumType;
 use App\Repository\ForumRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,19 +16,34 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin')]
 class AdminForumController extends AbstractController
 {
-    public function __construct(private EntityManagerInterface $em, private ForumRepository $forumRepository)
-    {
-
-    }
+    public function __construct(private EntityManagerInterface $em, private ForumRepository $forumRepository, private PaginatorInterface $paginator){ }
 
     //Vue All
     #[Route('/forum_all', name: 'app_admin_forum_all')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $forumEntities = $this->forumRepository->findAll();
+        $qb = $this->forumRepository->getQbAll();
+
+        $formForum = $this->createForm(SearchForumType::class);
+        $formForum->handleRequest($request); 
+
+        if($formForum->isSubmitted() && $formForum->isValid()){
+            $datas = $formForum->getData();
+            dump($datas);
+            $qb= $this->forumRepository->updateQbByData($qb, $datas);
+        }
+
+        $pagination = $this->paginator->paginate(
+            $qb,
+            $request->query->getInt('page',1),
+            1
+        );
+        // $forumEntities = $this->forumRepository->findAll();
 
         return $this->render('admin_forum/index.html.twig', [
-            'forumEntities' => $forumEntities
+            // 'forumEntities' => $forumEntities,
+            'pagination' => $pagination,
+            'formForum' => $formForum->createView()
         ]);
     }
 

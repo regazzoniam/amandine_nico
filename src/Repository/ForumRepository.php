@@ -75,4 +75,28 @@ class ForumRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    // pour la pagination
+    public function getQbAll(){
+        return $this->createQueryBuilder('f');
+    }
+    // pour faire la recherche dans forumAdmin (on se base que le qb crée dans la pagination)
+    public function updateQbByData($qb, $datas){
+        if($datas['title'] !== null){
+            $qb->andWhere('f.title LIKE :value')
+            ->setParameter('value', '%'.$datas['title'].'%')
+            ;
+        }
+        if($datas['date_beginning'] !== null){
+            $qb->andWhere('f.createdAt > :date_beginning')
+            ->setParameter(':date_beginning', $datas['date_beginning'])
+        ;
+        }
+        if($datas['date_end'] !== null){
+            $qb->andWhere('f.createdAt < :date_end')
+            ->setParameter(':date_end', $datas['date_end'])
+        ;
+        }
+        return $qb;
+    }
 }

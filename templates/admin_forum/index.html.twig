@@ -3,13 +3,20 @@
 {% block title %}Hello AdminForumController!{% endblock %}
 
 {% block body %}
-    <h1 class="text-green text-center">Bienvenue sur la gestion de vos Forums</h1>
+    <h1 class="text-green text-title text-center mt-3">Bienvenue sur la gestion de vos Forums</h1>
+    <div class="container text-white">
+        <h2 class="text-green">Rechercher un Forum</h2>
+        {{ form_start(formForum)}}
+        {{ form_end(formForum)}}
+    </div>
     <div class="container text-center">
+        <div class="container-btn text-center my-4">
         <button type="button" class="btn btn-green">
             <a class="text-decoration-none" href="{{ path('app_admin_forum_add') }}">
                 <i class="fa-solid fa-plus text-lightgrey"></i>
             </a>
         </button>
+        </div>
         <table class="table table-dark table-striped">
             <thead>
             <tr>
@@ -20,7 +27,7 @@
             </tr>
             </thead>
 
-            {% for forum in forumEntities %}
+            {% for forum in pagination %}
                 <tr>
                     <td>
                         {{ forum.title }}
@@ -66,9 +73,11 @@
                         </div>
                     </td>
                 </tr>
-
             {% endfor %}
         </table>
+        <div class="pagination">
+            {{knp_pagination_render(pagination)}}
+        </div>
     </div>
 
 {% endblock %}
