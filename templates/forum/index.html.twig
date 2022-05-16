@@ -16,7 +16,7 @@
         <h2 class="text-title text-grey text-center bg-green rounded-top mb-0">Forums</h2>
         <ul class="bg-grey rounded-bottom mt-0 py-2">
         {% for forum in forums %}
-            <li class="forum-list"><a href="{{path('app_forum_details', {'id': forum.id})}}" class="text-white text-decoration-none">{{forum.title}}</a></li>
+            <li class="forum-list"><a href="{{path('app_forum_details', {'id': forum.id})}}" class="text-white text-decoration-none">{{forum.title}} - {{forum | count_message_by_forum}} messages</a></li>
         {% endfor %}
         </ul>
     </div>

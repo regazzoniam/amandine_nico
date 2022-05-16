@@ -10,6 +10,18 @@
     {% block body %}
     {% endblock %}
     <footer>
+        <div class="global-container mt-5">
+            <h2 class="text-center text-green category text-title">Les dernières sorties</h2>
+                <div class="container my-5">
+                    <div class="row align-items-center justify-content-between text-center">
+                    {# SET : Pour créer une variable dans le twig et appeler la fonction get_last_ten_games()#}
+                    {% set lastGames = get_last_ten_games() %}
+                    {# on boucle dans le tableau des derniers jeux #}
+                    {% for game in lastGames %}
+                        {% include "game/_card.html.twig" %}
+                    {% endfor %}
+                    </div>
+                </div>
         {% block footer %}
         {% endblock %}
     </footer>
