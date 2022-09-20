@@ -28,6 +28,8 @@ class HomeController extends AbstractController
         //jeux - les plus achetés
         $mostBoughtGames = $this->gameRepository->getMostBoughtGames();
 
+        
+
         return $this->render('home/index.html.twig', [
             'latestGamesArray' => $latestGames,
             'latestCommentsArray' => $latestComments,
